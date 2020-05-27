@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="member"></div>
+    <div id="client"></div>
+    <script type="text/babel">
+      
+      function Member(props){
+          return(
+              <div className="member">
+                  <h2>{props.name}</h2>
+                  <p>Tuoi:{props.age}</p>
+              </div>
+              )
+      };
+      
+      
+      var memberList = (
+          <div>
+              <Member name="Pham Thi Chien" age="22" />
+              <Member name="Le Huy Hung" age="23" />
+          
+          </div>
+          
+          );
+      
+      
+      ReactDom.render(
+          memberList,document.getElementByID('member')
+          
+          );
+      ReactDom.render(
+          <Member name="Pham Thi Chien" age="22" />,document.getElementByID('client')
+          );
+      
+    </script>
+  </body>
+</html>
