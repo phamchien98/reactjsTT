@@ -10,43 +10,58 @@
   <body>
     <div id="member"></div>
     <script type="text/babel">
-      function Avatar(){
-        return(
-          <div className="avatar">
-            <img src="img_avatar.jpg" alt="" />
-          </div>
-        )
-      };
-
-      function MemberInfo(){
-        return(
-          <div className="info">
-            <h2>Nguyễn Văn A</h2>
-            <p>Tuổi: 25</p>
-          </div>
-        )
-      };
-
-      function Comment(){
-        return(
-          <div className="comment">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit proin sit amet neque.
-          </div>
-        )
-      };
-
-      function Member(){
-        return(
-          <div className="member">
-            <Avatar />
-            <MemberInfo />
-            <Comment />
-          </div>
-        )
-      };
-
+    
+    const member = {
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit proin sit amet neque.',
+      info: {
+        path: 'img_avatar.jpg',
+        name: 'Nguyễn Văn A',
+        age: 25
+      }
+    }
+    
+    
+    function Avatar(props){
+      return(
+        <div className="avatar">
+          <img src={props.hung.path} alt="" />
+        </div>
+      )
+    };
+    
+    function MemberInfo(props){
+      return(
+        <div className="info">
+          <Avatar hung={props.memberinfo} />
+          <h2>{props.memberinfo.name}</h2>
+          <p>Tuổi: {props.memberinfo.age}</p>
+        </div>
+      )
+    };
+    
+    function Comment(props){
+      return(
+        <div className="comment">
+          {props.text}
+        </div>
+      )
+    };
+    
+    function Member(props){
+      return(
+        <div className="member">
+          
+          <MemberInfo memberinfo={props.info} />
+          <Comment text={props.text} />
+        </div>
+      )
+    };
+        
       ReactDOM.render(
-        <Member />,
+        <Member 
+            info={member.info}
+            text={member.text}
+        />,
         document.getElementById('member')
       );
     </script>
