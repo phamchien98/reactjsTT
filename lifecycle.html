@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      h2 {font-size: 50px; text-align: center;}
+    </style>
+  </head>
+  <body>
+    <div id="counter"></div>
+
+    <script type="text/babel">
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { count: 1 };
+        };
+    
+    
+    
+      countFnc = () =>{
+          this.setState({
+              count:this.state.count+1
+          });
+      };
+      
+      componentDidMount(){
+          setInterval( () =>this.countFnc(),1000);
+          console.log("componentDidMount");
+      };
+      
+    
+        componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate");
+        if (this.state.count === 3) {
+          ReactDOM.unmountComponentAtNode(document.getElementById('counter'));
+        }
+      };
+    
+      componentWillUnmount() {
+        console.log("componentWillUnmount");
+        clearInterval(this.counterID);
+      };
+    
+         render() {
+        console.log('count = ' + this.state.count);
+        return (
+          <h2>{this.state.count}</h2>
+        );
+      };
+    };
+    
+    ReactDOM.render(
+      <Counter />,
+      document.getElementById('counter')
+    );
+    </script>
+  </body>
+</html>
